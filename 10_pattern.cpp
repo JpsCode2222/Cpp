@@ -264,33 +264,35 @@ int main()
     // }
 
     // // Eg.17 Dimond
-    int n = 10;
-    for (int row = n; row > 0; row--)
-    {
-        // space
-        for (int sp = row - 1; sp > 0; sp--)
-        {
-            cout << " ";
-        }
-        for (int str = 1; str <= n - row; str++)
-        {
-            cout << "* ";
-        }
-        cout << endl;
-    }
-    for (int row = 2; row <= n; row++)
-    {
-        // space
-        for (int sp = row - 1; sp > 0; sp--)
-        {
-            cout << " ";
-        }
-        for (int str = 1; str <= n - row; str++)
-        {
-            cout << "* ";
-        }
-        cout << endl;
-    }
+    // int n = 10;
+    // for (int row = n; row > 0; row--)
+    // {
+    //     // space
+    //     for (int sp = row - 1; sp > 0; sp--)
+    //     {
+    //         cout << " ";
+    //     }
+    //     for (int str = 1; str <= n - row; str++)
+    //     {
+    //         cout << "* ";
+    //     }
+    //     cout << endl;
+    // }
+    // for (int row = 2; row <= n; row++)
+    // {
+    //     // space
+    //     for (int sp = row - 1; sp > 0; sp--)
+    //     {
+    //         cout << " ";
+    //     }
+    //     for (int str = 1; str <= n - row; str++)
+    //     {
+    //         cout << "* ";
+    //     }
+    //     cout << endl;
+    // }
+
+    // // Eg.18
 
     return 0;
 }
