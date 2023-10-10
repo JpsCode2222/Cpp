@@ -30,12 +30,12 @@ using namespace std;
 // }
 
 // // Find Sum of Two numbers
-int sum(int a, int b)
-{
-    int sum = 0;
-    sum = a + b;
-    return sum;
-}
+// int sum(int a, int b)
+// {
+//     int sum = 0;
+//     sum = a + b;
+//     return sum;
+// }
 
 // // No return any thing only print
 // // use void

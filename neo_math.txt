@@ -7,7 +7,7 @@ create(:level{name:"6.5"})
 create(:semester{name:"I"})
 create(:semester{name:"II"})
 create(:semester{name:"III"})
-create(:semester{name:"VI"})
+create(:semester{name:"IV"})
 
 create(:mej1{name:"Mejor"})
 create(:mej2{name:"Mejor"})
@@ -28,17 +28,13 @@ create(:mand4{name:"Mandatory"})
 create(:elect1{name:"Elective"})
 create(:elect2{name:"Elective"})
 create(:elect3{name:"Elective"})
-create(:elect3a{name:"Elective A"})
-create(:elect3b{name:"Elective B"})
 create(:elect4{name:"Elective"})
-create(:elect4a{name:"Elective A"})
-create(:elect4b{name:"Elective B"})
 
 // Sem I
 create(:subject{name:"Advance Course in Linear Algebra",scode:"MAT51101" ,scredit:"4",stype:"T"})
 create(:subject{name:"Real Analysis",scode:"MAT51102" ,scredit:"4",stype:"T"})
 create(:subject{name:"Advance Course in Group Theory",scode:"MAT51103" ,scredit:"4",stype:"T"})
-create(:subject{name:"Practical",scode:"MAT51104" ,scredit:"2",stype:"P"})
+create(:subject{name:"Practical1",scode:"MAT51104" ,scredit:"2",stype:"P"})
 
 create(:subject{name:"Advance Calculus",scode:"MAT51105" ,scredit:"4",stype:"T"})
 create(:subject{name:"Advance Course in Ordinary Differential Equations",scode:"MAT51106" ,scredit:"4",stype:"T"})
@@ -49,7 +45,7 @@ create(:subject{name:"RM",scode:"MAT51107" ,scredit:"4",stype:"T"})
 create(:subject{name:"Advance Course in Complex Analysis",scode:"MAT52101" ,scredit:"4",stype:"T"})
 create(:subject{name:"General Topology",scode:"MAT52102" ,scredit:"4",stype:"T"})
 create(:subject{name:"Rings and Modules",scode:"MAT52103" ,scredit:"4",stype:"T"})
-create(:subject{name:"Practical",scode:"MAT52104" ,scredit:"2",stype:"P"})
+create(:subject{name:"Practical2",scode:"MAT52104" ,scredit:"2",stype:"P"})
 
 create(:subject{name:"Advance Course in Numerical Analysis",scode:"MAT52105" ,scredit:"4",stype:"T"})
 create(:subject{name:"Advance Course in Partial Differential Equations",scode:"MAT52106" ,scredit:"4",stype:"T"})
@@ -60,14 +56,14 @@ create(:subject{name:"On Job Training",scode:"MAT52607" ,scredit:"4"})
 create(:subject{name:"Functional Analysis",scode:"MAT63101" ,scredit:"4",stype:"T"})
 create(:subject{name:"Field Theory",scode:"MAT63102" ,scredit:"4",stype:"T"})
 create(:subject{name:"Integral Equations",scode:"MAT63103" ,scredit:"4",stype:"T"})
-create(:subject{name:"Practical",scode:"MAT63104" ,scredit:"2",stype:"P"})
+create(:subject{name:"Practical3",scode:"MAT63104" ,scredit:"2",stype:"P"})
 
 create(:subject{name:"Combinatorics",scode:"MAT63105" ,scredit:"2",stype:"T"})
-create(:subject{name:"Practical",scode:"MAT63106" ,scredit:"2",stype:"P"})
+create(:subject{name:"Practical3_A",scode:"MAT63106" ,scredit:"2",stype:"P"})
 create(:subject{name:"Mathematical Techniques using Python",scode:"MAT63107" ,scredit:"2",stype:"T"})
-create(:subject{name:"Practical",scode:"MAT63108" ,scredit:"2",stype:"P"})
+create(:subject{name:"Practical3_B",scode:"MAT63108" ,scredit:"2",stype:"P"})
 
-create(:subject{name:"",scode:"MAT63609" ,scredit:"4"})
+create(:subject{name:"RP_3",scode:"MAT63609" ,scredit:"4"})
 
 // Sem IV
 create(:subject{name:"Fourier Series and Boundary Value Problems",scode:"MAT640101" ,scredit:"4",stype:"T"})
@@ -75,10 +71,82 @@ create(:subject{name:"Differential Geometry",scode:"MAT640102" ,scredit:"4",styp
 create(:subject{name:"Probability and Statistics",scode:"MAT640103" ,scredit:"4",stype:"T"})
 
 create(:subject{name:"Number Theory and Coding Theory",scode:"MAT640104" ,scredit:"2",stype:"T"})
-create(:subject{name:"Practical",scode:"MAT640105" ,scredit:"2",stype:"P"})
+create(:subject{name:"Practical4_A",scode:"MAT640105" ,scredit:"2",stype:"P"})
 create(:subject{name:"Introduction to Data Science",scode:"MAT640106" ,scredit:"2",stype:"T"})
-create(:subject{name:"Practical",scode:"MAT640107" ,scredit:"2",stype:"P"})
+create(:subject{name:"Practical4_B",scode:"MAT640107" ,scredit:"2",stype:"P"})
 
-create(:subject{name:"RP",scode:"MAT640608" ,scredit:"6"})
+create(:subject{name:"RP_4",scode:"MAT640608" ,scredit:"6"})
+
+// Match
+match(d:department),(c:course) where d.name="Mathematics" and c.name="Msc-Mathematics" create (d)-[:has]->(c) return d,c
+match(c:course),(l:level) where c.name="Msc-Mathematics" and l.name="6.0" create (c)-[:has]->(l) return c,l
+
+match(l:level),(s:semester) where l.name="6.0" and s.name="I" create (l)-[:has]->(s) return l,s
+match(s:semester),(m:mej1) where s.name="I" and m.name="Mejor" create (s)-[:has]->(m) return s,m
+match(m:mej1),(m1:mand1) where m.name="Mejor" and m1.name="Mandatory" create (m)-[:has]->(m1) return m,m1
+match(m:mand1),(s:subject) where m.name="Mandatory" and s.name="Advance Course in Linear Algebra" create (m)-[:has]->(s) return m,s
+match(m:mand1),(s:subject) where m.name="Mandatory" and s.name="Real Analysis" create (m)-[:has]->(s) return m,s
+match(m:mand1),(s:subject) where m.name="Mandatory" and s.name="Advance Course in Group Theory" create (m)-[:has]->(s) return m,s
+match(m:mand1),(s:subject) where m.name="Mandatory" and s.name="Practical1" create (m)-[:has]->(s) return m,s
+
+match(m:mej1),(e:elect1) where m.name="Mejor" and e.name="Elective" create (m)-[:has]->(e) return m,e
+match(e:elect1),(s:subject) where e.name="Elective" and s.name="Advance Calculus" create (e)-[:has]->(s) return e,s
+match(e:elect1),(s:subject) where e.name="Elective" and s.name="Advance Course in Ordinary Differential Equations" create (e)-[:has]->(s) return e,s
+
+match(s:semester),(m:min1) where s.name="I" and m.name="Minor" create (s)-[:has]->(m) return s,m
+match(m:min1),(s:subject) where m.name="Minor" and s.name="RM" create (m)-[:has]->(s) return m,s
 
 
+
+match(l:level),(s:semester) where l.name="6.0" and s.name="II" create (l)-[:has]->(s) return l,s
+match(s:semester),(m:mej2) where s.name="II" and m.name="Mejor" create (s)-[:has]->(m) return s,m
+match(m:mej2),(m1:mand2) where m.name="Mejor" and m1.name="Mandatory" create (m)-[:has]->(m1) return m,m1
+match(m:mand2),(s:subject) where m.name="Mandatory" and s.name="Advance Course in Complex Analysis" create (m)-[:has]->(s) return m,s
+match(m:mand2),(s:subject) where m.name="Mandatory" and s.name="General Topology" create (m)-[:has]->(s) return m,s
+match(m:mand2),(s:subject) where m.name="Mandatory" and s.name="Rings and Modules" create (m)-[:has]->(s) return m,s
+match(m:mand2),(s:subject) where m.name="Mandatory" and s.name="Practical2" create (m)-[:has]->(s) return m,s
+
+match(m:mej2),(e:elect2) where m.name="Mejor" and e.name="Elective" create (m)-[:has]->(e) return m,e
+match(e:elect2),(s:subject) where e.name="Elective" and s.name="Advance Course in Numerical Analysis" create (e)-[:has]->(s) return e,s
+match(e:elect2),(s:subject) where e.name="Elective" and s.name="Advance Course in Partial Differential Equations" create (e)-[:has]->(s) return e,s
+
+match(s:semester),(o:ojt2) where s.name="II" and o.name="OJT,FP,CEP,CC,RP" create (s)-[:has]->(o) return s,o
+match(o:ojt2),(s:subject) where o.name="OJT,FP,CEP,CC,RP" and s.name="On Job Training" create (o)-[:has]->(s) return o,s
+
+
+
+match(c:course),(l:level) where c.name="Msc-Mathematics" and l.name="6.5" create (c)-[:has]->(l) return c,l
+
+match(l:level),(s:semester) where l.name="6.5" and s.name="III" create (l)-[:has]->(s) return l,s
+match(s:semester),(m:mej3) where s.name="III" and m.name="Mejor" create (s)-[:has]->(m) return s,m
+match(m:mej3),(m1:mand3) where m.name="Mejor" and m1.name="Mandatory" create (m)-[:has]->(m1) return m,m1
+match(m:mand3),(s:subject) where m.name="Mandatory" and s.name="Functional Analysis" create (m)-[:has]->(s) return m,s
+match(m:mand3),(s:subject) where m.name="Mandatory" and s.name="Field Theory" create (m)-[:has]->(s) return m,s
+match(m:mand3),(s:subject) where m.name="Mandatory" and s.name="Integral Equations" create (m)-[:has]->(s) return m,s
+match(m:mand3),(s:subject) where m.name="Mandatory" and s.name="Practical3" create (m)-[:has]->(s) return m,s
+
+match(m:mej3),(e:elect3) where m.name="Mejor" and e.name="Elective" create (m)-[:has]->(e) return m,e
+match(e:elect3),(s:subject) where e.name="Elective" and s.name="Combinatorics" create (e)-[:has]->(s) return e,s
+match(e:elect3),(s:subject) where e.name="Elective" and s.name="Practical3_A" create (e)-[:has]->(s) return e,s
+match(e:elect3),(s:subject) where e.name="Elective" and s.name="Mathematical Techniques using Python" create (e)-[:has]->(s) return e,s
+match(e:elect3),(s:subject) where e.name="Elective" and s.name="Practical3_B" create (e)-[:has]->(s) return e,s
+
+match(s:semester),(o:ojt3) where s.name="III" and o.name="OJT,FP,CEP,CC,RP" create (s)-[:has]->(o) return s,o
+match(o:ojt3),(s:subject) where o.name="OJT,FP,CEP,CC,RP" and s.name="RP_3" create (o)-[:has]->(s) return o,s
+
+
+match(l:level),(s:semester) where l.name="6.5" and s.name="IV" create (l)-[:has]->(s) return l,s
+match(s:semester),(m:mej4) where s.name="IV" and m.name="Mejor" create (s)-[:has]->(m) return s,m
+match(m:mej4),(m1:mand4) where m.name="Mejor" and m1.name="Mandatory" create (m)-[:has]->(m1) return m,m1
+match(m:mand4),(s:subject) where m.name="Mandatory" and s.name="Fourier Series and Boundary Value Problems" create (m)-[:has]->(s) return m,s
+match(m:mand4),(s:subject) where m.name="Mandatory" and s.name="Differential Geometry" create (m)-[:has]->(s) return m,s
+match(m:mand4),(s:subject) where m.name="Mandatory" and s.name="Probability and Statistics" create (m)-[:has]->(s) return m,s
+
+match(m:mej4),(e:elect4) where m.name="Mejor" and e.name="Elective" create (m)-[:has]->(e) return m,e
+match(e:elect4),(s:subject) where e.name="Elective" and s.name="Number Theory and Coding Theory" create (e)-[:has]->(s) return e,s
+match(e:elect4),(s:subject) where e.name="Elective" and s.name="Practical4_A" create (e)-[:has]->(s) return e,s
+match(e:elect4),(s:subject) where e.name="Elective" and s.name="Introduction to Data Science" create (e)-[:has]->(s) return e,s
+match(e:elect4),(s:subject) where e.name="Elective" and s.name="Practical4_B" create (e)-[:has]->(s) return e,s
+
+match(s:semester),(o:ojt4) where s.name="IV" and o.name="OJT,FP,CEP,CC,RP" create (s)-[:has]->(o) return s,o
+match(o:ojt4),(s:subject) where o.name="OJT,FP,CEP,CC,RP" and s.name="RP_4" create (o)-[:has]->(s) return o,s
