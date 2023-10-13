@@ -67,15 +67,15 @@ int main()
     // }
 
     // Complexity from worst to best
-    O(n !)
-    O(2 ^ n)
-    O(n ^ 3)
-    O(n ^ 2)
-    O(nlogn)
-    O(n)
-    O(rootn)
-    O(logn)
-    O(1)
+    // O(n !)  Worst
+    // O(2 ^ n)
+    // O(n ^ 3)
+    // O(n ^ 2)
+    // O(nlogn)
+    // O(n)
+    // O(rootn)
+    // O(logn)
+    // O(1)   Best
 
     return 0;
 }
