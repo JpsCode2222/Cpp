@@ -8,6 +8,7 @@ int main()
     cout << "Enter Size of Array";
     cin >> n;
     int arr[1000];
+    // Get Elements in arr
     for (int i = 0; i < n; i++)
     {
         cout << "Enter " << i << " Element in array : ";
@@ -26,6 +27,7 @@ int main()
         swap(arr[i], arr[index]);
     }
 
+    // Print Element in arr
     for (int i = 0; i < n; i++)
     {
         cout << arr[i] << " ";
