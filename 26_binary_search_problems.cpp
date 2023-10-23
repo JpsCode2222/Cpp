@@ -124,32 +124,102 @@ using namespace std;
 // }
 
 // // Find minimul number in rotated array
-int findMinimumElemtn(int arr[], int size)
+// int findMinimumElemtn(int arr[], int size)
+// {
+//     int start = 0, end = size - 1, mid = -1, ans = arr[0];
+//     while (start <= end)
+//     {
+//         // Find mid
+//         mid = end + (start - end) / 2;
+//         // Check Left side sorted
+//         if (arr[mid] >= arr[0])
+//         {
+//             start = mid + 1;
+//         }
+//         // Check Right side sorted
+//         else
+//         {
+//             // Store element in ans
+//             ans = arr[mid];
+//             end = mid - 1;
+//         }
+//     }
+//     return ans;
+// }
+
+// // Search Element in rotated Array
+// int searchElementInRotatedArr(int arr[], int size, int target)
+// {
+//     int start = 0, end = size - 1, mid, ans = -1;
+//     while (start <= end)
+//     {
+//         mid = start + (end - start) / 2;
+//         // mid == target  --> return mid
+//         if (arr[mid] == target)
+//         {
+//             return mid;
+//         }
+//         // check sorted part --> mid >= start
+//         else if (arr[mid] >= arr[0])
+//         {
+//             // start <= target && mid >= target
+//             if (arr[start] <= target && arr[mid] >= target)
+//             {
+//                 // end = mid - 1  --> left side
+//                 end = mid - 1;
+//             }
+//             else
+//             {
+//                 // start = mid + 1  ---> right side
+//                 start = mid + 1;
+//             }
+//         }
+//         else
+//         {
+//             // ṃid <= target && end >= target
+//             if (arr[mid] <= target && arr[end] >= target)
+//             {
+//                 // start = mid + 1  ---> right side
+//                 start = mid + 1;
+//             }
+//             else
+//             {
+//                 // end = mid - 1  --> left side
+//                 end = mid - 1;
+//             }
+//         }
+//     }
+//     return ans;
+// }
+
+// // Find kth missing positive integer
+int findKthMissingNumber(int arr[], int size, int key)
 {
-    int start = 0, end = size - 1, mid = -1, ans = arr[0];
+    int start = 0, end = size - 1, mid, ans = size;
     while (start <= end)
     {
         mid = end + (start - end) / 2;
-        if (arr[mid] >= arr[0])
+        if (arr[mid] >= key)
         {
-            start = mid + 1;
+            ans = mid + key;
+            end = mid - 1;
         }
         else
         {
-            ans = arr[mid];
-            end = mid - 1;
+            start = mid + 1;
         }
     }
     return ans;
 }
-
 int main()
 {
-    int arr[5] = {10, 20, 30, 5, 7};
+    int arr[5] = {10, 20, 30, 40, 50};
     // cout << firstLastPosition(arr, 5, 30);
     // cout << findIndexOfElement(arr, 5, 0);
     // cout << findSquareRoot(arr, 5, 100);
     // cout << peakIndexInMountainArr(arr, 5);
-    cout << findMinimumElemtn(arr, 5);
+    // cout << findMinimumElemtn(arr, 5);
+    // cout << searchElementInRotatedArr(arr, 5, 10);
+    cout << findKthMissingNumber(arr, 5, 11);
     return 0;
 }
