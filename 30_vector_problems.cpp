@@ -79,7 +79,7 @@ int main()
     // vector<int> arr = {1, 2, 3, 3, 2, 1};
     // cout << divide(arr);
 
-    int arr[] = {1, 2, 3, 3, 2, 1};
-    cout << maxSubarraySum(arr, 6);
+    // int arr[] = {1, 2, 3, 3, 2, 1};
+    // cout << maxSubarraySum(arr, 6);
     return 0;
 }
