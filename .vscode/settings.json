@@ -5,7 +5,10 @@
     "ostream": "cpp",
     "random": "cpp",
     "vector": "cpp",
-    "limits": "cpp"
+    "limits": "cpp",
+    "*.tcc": "cpp",
+    "string": "cpp",
+    "istream": "cpp"
   },
   "C_Cpp.errorSquiggles": "disabled"
 }
